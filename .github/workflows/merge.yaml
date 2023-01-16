@@ -1,0 +1,25 @@
+name: Build
+
+on:
+  push:
+    branches:
+    - master
+
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Perform code quality tests
+      run: docker-compose run --rm phing
+    - name: Generate code coverage badge
+      uses: timkrase/phpunit-coverage-badge@v1.2.0
+      with:
+        push_badge: true
+        report: build/logs/clover.xml
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
