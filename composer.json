@@ -1,5 +1,5 @@
 {
-  "name": "ericksonreyes/valueobjects",
+  "name": "ericksonreyes/value-objects",
   "description": "Collection of Domain-Driven Design inspired Value Objects for PHP 8",
   "homepage": "https://github.com/ericksonreyes/value-objects",
   "authors": [
