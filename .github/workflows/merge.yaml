@@ -21,5 +21,5 @@ jobs:
       uses: timkrase/phpunit-coverage-badge@v1.2.0
       with:
         push_badge: true
-        report: build/logs/clover.xml
+        report: build/logs/phpunit/clover.xml
         repo_token: ${{ secrets.GITHUB_TOKEN }}
