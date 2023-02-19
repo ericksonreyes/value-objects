@@ -18,13 +18,13 @@ trait ConvertableMoney
      */
     public function convertToForeignCurrency(MoneyInterface $exchangeRate): MoneyInterface
     {
-        if ($exchangeRate->amount() <= 0) {
+        if ($exchangeRate->value() <= 0) {
             throw new InvalidExchangeRateAmountException(
                 MoneyInterface::ERROR_ZERO_OR_LESS_EXCHANGE_RATE
             );
         }
 
-        $convertedAmount = $this->amount() * $exchangeRate->amount();
+        $convertedAmount = $this->value() * $exchangeRate->value();
 
         return new self(
             $exchangeRate->currency(),

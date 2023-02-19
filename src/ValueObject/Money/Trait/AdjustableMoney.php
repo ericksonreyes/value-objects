@@ -19,7 +19,7 @@ trait AdjustableMoney
     {
         $this->currenciesMustMatch($anotherMoney);
 
-        $sum = $anotherMoney->amount() + $this->amount();
+        $sum = $anotherMoney->value() + $this->value();
         return new self($this->currency(), $sum);
     }
 
@@ -31,7 +31,7 @@ trait AdjustableMoney
     {
         $this->currenciesMustMatch($anotherMoney);
 
-        $change = $this->amount() - $anotherMoney->amount();
+        $change = $this->value() - $anotherMoney->value();
         return new self($this->currency, $change);
     }
 
@@ -41,10 +41,10 @@ trait AdjustableMoney
      */
     public function increaseByPercentage(float $percentage): MoneyInterface
     {
-        $increase = $this->amount() * ($percentage / 100);
+        $increase = $this->value() * ($percentage / 100);
         return new self(
             $this->currency(),
-            $this->amount() + $increase
+            $this->value() + $increase
         );
     }
 
@@ -54,10 +54,10 @@ trait AdjustableMoney
      */
     public function decreaseByPercentage(float $percentage): MoneyInterface
     {
-        $decrease = $this->amount() * ($percentage / 100);
+        $decrease = $this->value() * ($percentage / 100);
         return new self(
             $this->currency(),
-            $this->amount() - $decrease
+            $this->value() - $decrease
         );
     }
 
@@ -69,8 +69,8 @@ trait AdjustableMoney
     {
         $this->currenciesMustMatch($anotherMoney);
 
-        $firstAmount = $this->amount();
-        $secondAmount = $anotherMoney->amount();
+        $firstAmount = $this->value();
+        $secondAmount = $anotherMoney->value();
 
         $dividend = ($firstAmount - $secondAmount);
         $divisor = ($firstAmount + $secondAmount) / 2;
@@ -86,8 +86,8 @@ trait AdjustableMoney
     {
         $this->currenciesMustMatch($anotherMoney);
 
-        $firstAmount = $this->amount();
-        $secondAmount = $anotherMoney->amount();
+        $firstAmount = $this->value();
+        $secondAmount = $anotherMoney->value();
 
         $amountDifference = ($firstAmount - $secondAmount);
 
@@ -102,7 +102,7 @@ trait AdjustableMoney
     {
         return new self(
             $this->currency(),
-            $this->amount() * $multiples
+            $this->value() * $multiples
         );
     }
 
@@ -116,7 +116,7 @@ trait AdjustableMoney
 
         return new self(
             $this->currency(),
-            $this->amount() - $deduction->amount()
+            $this->value() - $deduction->value()
         );
     }
 
@@ -130,7 +130,7 @@ trait AdjustableMoney
 
         return new self(
             $this->currency(),
-            $percentageInDecimals * $this->amount()
+            $percentageInDecimals * $this->value()
         );
     }
 }

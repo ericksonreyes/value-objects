@@ -18,9 +18,9 @@ class Money implements MoneyInterface
 
     /**
      * @param \EricksonReyes\ValueObject\Money\Currency $currency
-     * @param float $amount
+     * @param float $value
      */
-    public function __construct(private readonly Currency $currency, private readonly float $amount)
+    public function __construct(private readonly Currency $currency, private readonly float $value)
     {
     }
 
@@ -35,8 +35,8 @@ class Money implements MoneyInterface
     /**
      * @return float
      */
-    public function amount(): float
+    public function value(): float
     {
-        return $this->amount;
+        return $this->value;
     }
 }

@@ -18,11 +18,33 @@ class MoneyTest extends TestCase
     public function testClassConstructor(): void
     {
         $currency = new Currency('PHP');
-        $amount = 100.50;
-        $money = new Money($currency, $amount);
+        $value = 100.50;
+        $money = new Money($currency, $value);
 
         $this->assertEquals($currency, $money->currency());
-        $this->assertEquals($amount, $money->amount());
+    }
+
+    /**
+     * @return void
+     */
+    public function testCurrency(): void
+    {
+        $currency = new Currency('PHP');
+        $value = 100.50;
+        $money = new Money($currency, $value);
+        $this->assertEquals($value, $money->value());
+    }
+
+    /**
+     * @return void
+     */
+    public function testValue(): void
+    {
+        $currency = new Currency('PHP');
+        $value = 100.50;
+        $money = new Money($currency, $value);
+        $this->assertEquals('Philippines Peso', $money->currency()->name());
+        $this->assertEquals('PHP', $money->currency()->code());
     }
 
     /**
@@ -39,7 +61,7 @@ class MoneyTest extends TestCase
         $firstInstallment = new Money($currency, $installmentAmount);
         $grossPayment = $downPayment->addedBy($firstInstallment);
 
-        $this->assertEquals($expectedTotalPayment, $grossPayment->amount());
+        $this->assertEquals($expectedTotalPayment, $grossPayment->value());
     }
 
     public function testRequiresMatchingCurrencies()
@@ -69,7 +91,7 @@ class MoneyTest extends TestCase
         $deduction = new Money($currency, $incomeTaxDeduction);
         $grossIncome = $income->deductedBy($deduction);
 
-        $this->assertEquals($expectedNetPay, $grossIncome->amount());
+        $this->assertEquals($expectedNetPay, $grossIncome->value());
     }
 
     /**
@@ -85,7 +107,7 @@ class MoneyTest extends TestCase
         $currentBalance = new Money($currency, $previousBalance);
         $newBalance = $currentBalance->increaseByPercentage($interestRate);
 
-        $this->assertEquals($expectedCurrentBalance, $newBalance->amount());
+        $this->assertEquals($expectedCurrentBalance, $newBalance->value());
     }
 
     /**
@@ -101,7 +123,7 @@ class MoneyTest extends TestCase
         $currentBalance = new Money($currency, $previousBalance);
         $newBalance = $currentBalance->decreaseByPercentage($belowMaintainingBalancePenalty);
 
-        $this->assertEquals($expectedCurrentBalance, $newBalance->amount());
+        $this->assertEquals($expectedCurrentBalance, $newBalance->value());
     }
 
     /**
@@ -131,7 +153,7 @@ class MoneyTest extends TestCase
         $currentBalance = new Money($currency, 100.00);
         $newBalance = $currentBalance->differenceByAmount($previousBalance);
 
-        $this->assertEquals($expectedNewBalance, $newBalance->amount());
+        $this->assertEquals($expectedNewBalance, $newBalance->value());
     }
 
     /**
@@ -147,7 +169,7 @@ class MoneyTest extends TestCase
         $monthlyPayment = new Money($currency, $rentalFee);
         $amountPayable = $monthlyPayment->multipliedBy($monthsToRent);
 
-        $this->assertEquals($expectedTotalPayment, $amountPayable->amount());
+        $this->assertEquals($expectedTotalPayment, $amountPayable->value());
     }
 
     /**
@@ -163,7 +185,7 @@ class MoneyTest extends TestCase
         $purchasedItemPrice = new Money($currency, $originalPrice);
         $finalPrice = $purchasedItemPrice->discountedBy($discountInPercentage);
 
-        $this->assertEquals($expectedFinalPrice, $finalPrice->amount());
+        $this->assertEquals($expectedFinalPrice, $finalPrice->value());
     }
 
     /**
@@ -253,7 +275,7 @@ class MoneyTest extends TestCase
 
         $americanDollar = $philippinePeso->convertToForeignCurrency($exchangeRate);
 
-        $this->assertEquals($expectedConvertedAmount, number_format($americanDollar->amount(), 2));
+        $this->assertEquals($expectedConvertedAmount, number_format($americanDollar->value(), 2));
         $this->assertEquals($foreignCurrency, $americanDollar->currency());
     }
 

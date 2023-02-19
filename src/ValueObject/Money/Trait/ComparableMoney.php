@@ -19,7 +19,7 @@ trait ComparableMoney
     {
         $this->currenciesMustMatch($anotherMoney);
 
-        return $this->amount() < $anotherMoney->amount();
+        return $this->value() < $anotherMoney->value();
     }
 
     /**
@@ -30,7 +30,7 @@ trait ComparableMoney
     {
         $this->currenciesMustMatch($anotherMoney);
 
-        return $this->amount() <= $anotherMoney->amount();
+        return $this->value() <= $anotherMoney->value();
     }
 
     /**
@@ -41,7 +41,7 @@ trait ComparableMoney
     {
         $this->currenciesMustMatch($anotherMoney);
 
-        return $this->amount() === $anotherMoney->amount();
+        return $this->value() === $anotherMoney->value();
     }
 
     /**
@@ -52,7 +52,7 @@ trait ComparableMoney
     {
         $this->currenciesMustMatch($anotherMoney);
 
-        return $this->amount() !== $anotherMoney->amount();
+        return $this->value() !== $anotherMoney->value();
     }
 
     /**
@@ -63,7 +63,7 @@ trait ComparableMoney
     {
         $this->currenciesMustMatch($anotherMoney);
 
-        return $this->amount() >= $anotherMoney->amount();
+        return $this->value() >= $anotherMoney->value();
     }
 
     /**
@@ -75,6 +75,6 @@ trait ComparableMoney
 
         $this->currenciesMustMatch($anotherMoney);
 
-        return $this->amount() > $anotherMoney->amount();
+        return $this->value() > $anotherMoney->value();
     }
 }

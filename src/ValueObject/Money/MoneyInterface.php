@@ -18,7 +18,7 @@ interface MoneyInterface
     /**
      * @return float
      */
-    public function amount(): float;
+    public function value(): float;
 
     /**
      * @param \EricksonReyes\ValueObject\Money\MoneyInterface $anotherMoney
