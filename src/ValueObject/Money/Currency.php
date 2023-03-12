@@ -8,7 +8,7 @@ use EricksonReyes\ValueObject\Money\Exception\UnknownCurrencyCodeException;
  * Class Currency
  * @package ValueObject\Money
  */
-class Currency
+class Currency implements CurrencyInterface
 {
     /**
      * @var array|string[]
@@ -165,4 +165,5 @@ class Currency
     {
         return $this->name;
     }
+
 }

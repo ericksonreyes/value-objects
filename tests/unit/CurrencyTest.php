@@ -16,7 +16,6 @@ class CurrencyTest extends TestCase
     public function testClassConstructor(): void
     {
         $currency = new Currency(code: 'php');
-
         $this->assertSame('PHP', $currency->code());
         $this->assertSame('Philippines Peso', $currency->name());
     }
